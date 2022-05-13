@@ -1,0 +1,101 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    color: #333e48;
+    margin: 0;
+    width: 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+.left_side{
+    float:left;
+    width:3%;
+    padding: 2px 0 2px 1%;
+    border-right-width: 0.5px;
+    border-right-style: inset;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+}
+.logos{
+    padding-top: 20%;
+    height: 100%;
+}
+.h15{
+    height: 15%;
+}
+.h25{
+    height: 25%;
+}
+
+.middle_side{
+    float:left;
+    width:60%;
+    padding: 0 1% 0 7%;
+}
+.right_side{
+    position: fixed;
+    top: 0;
+    right: 0;
+    float:right;
+    width:23%;
+    padding: 2%;
+    text-align: center;
+    border-left-width: 0.5px;
+    border-left-style: outset;
+    height: 100%;
+}
+.premium-box{
+    width: 70%;
+    padding: 4px 20% 4px 20%;
+    border-radius: 10px;
+    background: rgba(8, 8, 8, 1);
+    color: white;
+    text-transform: capitalize;
+    font-size: 1.1vw;
+}
+.search-box {
+    width: 77%;
+    padding: 1%;
+    border-radius: 10px;
+    border: 2px solid rgba(8, 8, 8, 1);
+    text-transform: capitalize;
+    font-size: 1.1vw;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.suggested-posts{
+    margin-top: 5%;
+    width:80%;
+    text-align: center;
+}
+.suggested-post{
+    margin-bottom: 12%;
+    width: 90%;
+    text-align: left;
+    cursor: pointer;
+}
+.title{
+    font-weight:bold ;
+}
+.pinned-posts{}
+.main-posts{
+    margin-top: 3%;
+}
+.post{
+    margin-bottom: 1%;
+    border-width: 0.5px;
+    border-style: dashed;
+    padding: 1%;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
