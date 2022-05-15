@@ -13,5 +13,6 @@ class Posts extends Model
         'body',
         'visits',
         'pinned',
+        'user_id',
     ];
 }

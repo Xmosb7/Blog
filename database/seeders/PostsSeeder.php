@@ -17,15 +17,18 @@ class PostsSeeder extends Seeder
     {
         Posts::create([
             'title'=> 'Test',
-            'body'=> "this is test 1" ,
+            'body'=> "this is post 1" ,
             'visits'=>10,
             'pinned' =>true,
+            'user_id'=>1
         ]);
         Posts::create([
             'title'=> 'Test',
-            'body'=> "this is test 1" ,
+            'body'=> "this is post 2" ,
             'visits'=>2,
             'pinned' =>false,
-            ]);
+            'user_id'=>2
+
+        ]);
     }
 }

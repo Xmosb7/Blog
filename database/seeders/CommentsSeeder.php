@@ -16,14 +16,14 @@ class CommentsSeeder extends Seeder
     public function run()
     {
         Comments::create([
-            'body' => 'this is comment',
+            'body' => 'this is comment 1',
             'user_id' => 1,
-            'Post_id' => 1,
+            'post_id' => 1,
         ]);
         Comments::create([
-            'body' => 'this is comment',
+            'body' => 'this is comment 2',
             'user_id' => 2,
-            'Post_id' => 1,
+            'post_id' => 1,
             ]);
     }
 }

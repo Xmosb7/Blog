@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('body');
             $table->integer('visits');
             $table->boolean('pinned');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
