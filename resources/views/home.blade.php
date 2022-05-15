@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+
     <div class="container" style="padding-top: 5%;text-align: center;">
         <div class="avatar-container" style="text-align: center">
             <img class="avatar-img" src="http://i.stack.imgur.com/Dj7eP.jpg"/>

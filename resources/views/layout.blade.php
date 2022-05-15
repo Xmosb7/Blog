@@ -10,15 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" href="/css/style.css">
-{{--    <link rel="stylesheet" href="/css/bootstrap.min.css">--}}
-
 
 </head>
 <body>
 {{--   20% --}}
 <div id="left_side" class="left_side">
     <div class="logos">
-        <p onclick="location.href='#'" style="cursor: pointer;" class="h25">logo</p>
+        <p onclick="location.href='{{ url('/') }}'" style="cursor: pointer;font-size: 1.2vw"
+           class="h25">{{ config('app.name', 'Laravel') }}</p>
         <div onclick="location.href='#'" style="cursor: pointer;" class="h15" role="tooltip" aria-hidden="false"
              aria-describedby="1" aria-labelledby="1">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Home">
@@ -42,9 +41,31 @@
         <div onclick="location.href='#'" style="cursor: pointer;" class="h15">
             <img alt="Profile" class="l ci gk si sj go" src="/contact.jpg" width="32" height="32">
         </div>
-        <div onclick="location.href='#'" style="cursor: pointer;" class="h15">
-            <img alt="Profile" class="l ci gk si sj go" src="/profile.jpg" width="32" height="32">
-        </div>
+        <!-- Authentication Links -->
+        @guest
+            @if (Route::has('login'))
+                <a href="{{ route('login') }}" style="display: block;font-size: 1vw;margin-bottom: 2%;color: black">{{ __('Login') }}</a>
+            @endif
+
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}" style="display: block;font-size: 0.8vw;margin-bottom: 2%;color: black">{{ __('Register') }}</a>
+            @endif
+        @else
+            <a style="display: block;margin-bottom: 25%;">
+                <img alt="Profile" src="/profile.jpg" width="35" height="35">
+            </a>
+            <div>
+                <a style="display: block;font-size: 0.8vw;margin-bottom: 2%;color: black" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+        @endguest
     </div>
 
 </div>

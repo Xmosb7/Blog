@@ -21,11 +21,11 @@ return new class extends Migration
             $table->string('password');
             $table->string('img');
             $table->binary('is_admin')->default(0)->nullable();
+            $table->foreignId('plan_id')->constrained('plans');
 
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreignId('plan_id')->constrained('plans');
         });
     }
 

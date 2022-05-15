@@ -17,12 +17,14 @@ class PlansSeeder extends Seeder
     public function run()
     {
         Plan::create([
-            'name' => 'Basic',
-            'price' => 0,
+            'name'=>'Basic',
+            'price'=>0,
+            'posts_month'=>0
         ]);
         Plan::create([
-            'name' => 'Premium',
-            'price' => 100,
+            'name'=>'Premium',
+            'price'=>10,
+            'posts_month'=>2
         ]);
     }
 }
