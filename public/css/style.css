@@ -81,6 +81,7 @@ body {
     margin-top: 5%;
     width: 80%;
     text-align: center;
+
 }
 
 .suggested-post {
@@ -88,6 +89,9 @@ body {
     width: 90%;
     text-align: left;
     cursor: pointer;
+    border-width: 0.5px;
+    border-style: dashed;
+    border-radius: 4px;
 }
 
 .title {
@@ -105,8 +109,8 @@ body {
     margin-bottom: 1%;
     border-width: 0.5px;
     border-style: dashed;
-    padding: 1%;
     border-radius: 4px;
+    padding: 1%;
     cursor: pointer;
 }
 

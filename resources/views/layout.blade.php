@@ -18,7 +18,7 @@
     <div class="logos">
         <p onclick="location.href='{{ url('/') }}'" style="cursor: pointer;font-size: 1.2vw"
            class="h25">{{ config('app.name', 'Laravel') }}</p>
-        <div onclick="location.href='#'" style="cursor: pointer;" class="h15" role="tooltip" aria-hidden="false"
+        <div onclick="location.href='{{ url('/') }}'" style="cursor: pointer;" class="h15" role="tooltip" aria-hidden="false"
              aria-describedby="1" aria-labelledby="1">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Home">
                 <path
@@ -26,7 +26,7 @@
                     stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
         </div>
-        <div onclick="location.href='#'" style="cursor: pointer;" class="h15" role="tooltip" aria-hidden="false"
+        <div onclick="location.href='{{ url('/write') }}" style="cursor: pointer;" class="h15" role="tooltip" aria-hidden="false"
              aria-describedby="5" aria-labelledby="5">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Write">
                 <path
@@ -38,20 +38,22 @@
                 </path>
             </svg>
         </div>
-        <div onclick="location.href='#'" style="cursor: pointer;" class="h15">
+        <div onclick="location.href='{{ url('/email') }}'" style="cursor: pointer;" class="h15">
             <img alt="Profile" class="l ci gk si sj go" src="/contact.jpg" width="32" height="32">
         </div>
         <!-- Authentication Links -->
         @guest
             @if (Route::has('login'))
-                <a href="{{ route('login') }}" style="display: block;font-size: 1vw;margin-bottom: 2%;color: black">{{ __('Login') }}</a>
+                <a href="{{ route('login') }}"
+                   style="display: block;font-size: 1vw;margin-bottom: 2%;color: black">{{ __('Login') }}</a>
             @endif
 
             @if (Route::has('register'))
-                <a href="{{ route('register') }}" style="display: block;font-size: 0.8vw;margin-bottom: 2%;color: black">{{ __('Register') }}</a>
+                <a href="{{ route('register') }}"
+                   style="display: block;font-size: 0.8vw;margin-bottom: 2%;color: black">{{ __('Register') }}</a>
             @endif
         @else
-            <a style="display: block;margin-bottom: 25%;">
+            <a href="{{ url('/home') }}" style="display: block;margin-bottom: 25%;">
                 <img alt="Profile" src="/profile.jpg" width="35" height="35">
             </a>
             <div>
@@ -77,25 +79,31 @@
 
 </div>
 
+@php
+    $main_posts2=\Illuminate\Support\Facades\DB::table('posts')->get();
+    $no_posts2=$main_posts2->count()??0;
+    $suggested_posts =  ($no_posts2>3)?$main_posts2->random(4):$main_posts2;
+@endphp
 
-<div id="right_side" class="right_side">
-    {{--   30% --}}
-    <div>
-        <a href="/get-premium-plan" type="text" id="premium-box" class="premium-box">Get Premium plan</a>
-    </div>
-    <div>
-        <input type="text" id="search-box" class="search-box" placeholder="search">
-    </div>
-    <div class="suggested-posts">
-        <div class="suggested-post" onclick="location.href='#'">
-            <p class="title">Title</p>
-            <p>Description ttttttttt tttttttttttttt dddddddddddddd ppppppppppppppp mmmmmmmmmmmmmmmmmmmm</p>
+        <div id="right_side" class="right_side">
+            {{--   30% --}}
+            <div>
+                <a href="/get-premium-plan" type="text" id="premium-box" class="premium-box">Get Premium plan</a>
+            </div>
+            <div>
+                <input type="text" id="search-box" class="search-box" placeholder="search">
+            </div>
+            @if(!is_null( $suggested_posts->first() ) )
+                <div class="suggested-posts">
+                    @foreach($suggested_posts as $post)
+                        <div class="suggested-post" onclick="location.href='/posts/{{$post->id}}'">
+                            <p class="title">{{$post->title}}</p>
+                            <p>{{$post->body}}</p>
+                        </div>
+                    @endforeach
+                    @endif
+            </div>
         </div>
-
-    </div>
-
-
-</div>
 </body>
 
 <script>

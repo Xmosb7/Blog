@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
             'name'=> 'admin@admin',
             'email'=> 'admin@admin',
             'password'=>  bcrypt('admin@admin'),
-            'img'=>'http://i.stack.imgur.com/Dj7eP.jpg',
+            'img'=>'https://scontent.fcai19-1.fna.fbcdn.net/v/t1.18169-9/13151980_1310806328948339_6133123822329758872_n.jpg?_nc_cat=100&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=ADlJwB_0QrAAX_D1LBh&_nc_ht=scontent.fcai19-1.fna&oh=00_AT-GUMVsiIq81bfBSIz2hdTukAzCGaZeHAByYgjrsO70Bg&oe=62A5B26A',
             'is_admin' =>'1',
             'plan_id'=>'2',
         ]);
@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
             'name'=> 'user@user',
             'email'=> 'user@user',
             'password'=>  bcrypt('user@user'),
-            'img'=>'http://i.stack.imgur.com/Dj7eP.jpg',
+            'img'=>'https://pbs.twimg.com/media/DhAcqQcW0AAL8CG.jpg',
             'is_admin' =>0,
             'plan_id'=>1,
         ]);
