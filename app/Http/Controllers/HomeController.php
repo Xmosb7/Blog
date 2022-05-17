@@ -25,40 +25,39 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $no_users = DB::table('users')->get()->count();
-        $no_posts = DB::table('posts')->get()->count();
-        $no_visits = DB::table('posts')->sum('visits');
-        $user_posts = DB::table('posts')->where('user_id', auth()->user()->id)->get();
+        $user_posts = DB::table('posts')->where('user_id', auth()->user()->id)->get(); //user
+        $max_post_visit_value = ($user_posts->max('visits')) ? $user_posts->max('visits') : 0; //user
+        $max_post_visit_post = ($max_post_visit_value > 0)? DB::table('posts')->where('visits', $max_post_visit_value)->first() :null;
 
-        $max_post_visit_value = ($user_posts->max('visits')) ? $user_posts->max('visits') : 0;
-        if ($max_post_visit_value > 0) {
-            $max_post_visit_post = DB::table('posts')->where('visits', $max_post_visit_value)->first();
-            return view('home', [
+        //if it's admin
+        if(auth()->check() && auth()->user()->is_admin == 1){
+            $users= DB::table('users')->where('is_admin',0)->get();
+            $no_users = $users->count(); //admin
+            $no_posts = DB::table('posts')->get()->count(); //admin
+            $no_visits = DB::table('posts')->sum('visits'); //admin
+            $orders = DB::table('premium_orders')->get(); //admin
+
+            return view('admin.home', [
+                'users'=>$users,
                 'no_users' => $no_users,
                 'no_posts' => $no_posts,
                 'no_visits' => $no_visits,
                 'user_posts' => $user_posts,
                 'max_post_visit_post' => $max_post_visit_post,
+                'orders'=>$orders,
             ]);
+
+
         }
-        return view('home', [
-            'no_users' => $no_users,
-            'no_posts' => $no_posts,
-            'no_visits' => $no_visits,
-            'user_posts' => $user_posts,
-            'max_post_visit_post' => null,
-        ]);
-    }
+        //if it's user
+        else{
 
-    public function welcome()
-    {
-        $main_posts=DB::table('posts')->get();
-        $pinned_posts=$main_posts->where('pinned',1);
-        $no_posts=$main_posts->count()??0;
+            return view('home', [
+                'user_posts' => $user_posts,
+                'max_post_visit_post' => $max_post_visit_post,
+            ]);
 
-        return view('welcome', [
-            'pinned_posts'=>$pinned_posts,
-            'main_posts'=>$main_posts,
-        ]);
+        }
+
     }
 }

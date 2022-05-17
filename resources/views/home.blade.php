@@ -3,10 +3,8 @@
 @section('content')
 
     @php
-
         $plan = \Illuminate\Support\Facades\DB::table('plans')->where('id',auth()->user()->plan_id )->first();
     @endphp
-
     <div class="container" style="padding-top: 5%;text-align: center;">
         <div class="avatar-container" style="text-align: center">
             <img class="avatar-img" src="{{auth()->user()->img}}"/>
@@ -14,26 +12,23 @@
         </div>
         <div>
             <div class="left-side-avatar">
-                <label>You are logged in as `User`!</label><br>
-                <label>You'r plan is `{{ $plan->name }}`!</label>
+                <label>You're logged in as <strong>User</strong>.</label><br>
+                <label>You're plan is <strong>{{ $plan->name }}</strong>.</label>
             </div>
             <div class="right-side-avatar">
-                <label>{{'name:  '.auth()->user()->name }}</label><br>
-                <label>{{'E-mail:  '.auth()->user()->email }}</label><br>
-                <label>{{'Created_at:  '.auth()->user()->created_at }}</label><br>
+                <label><strong>name:</strong>{{auth()->user()->name }}</label><br>
+                <label><strong>E-mail:</strong>{{auth()->user()->email }}</label><br>
+                <label><strong>Created at:</strong> {{auth()->user()->created_at }}</label><br>
             </div>
         </div>
     </div>
-    <hr style="width: 80%;margin-top: 15%;">
+    <hr style="width: 80%;margin-top: 12%;">
     <div class="statics">
-        <h4>Blog statics</h4>
-        <div style="padding-left: 4%">
-            <label>number of users who signed up = {{$no_users}}</label><br>
-            <label>number of interactions is {{$no_visits}} times.</label>
+        @if(!is_null($max_post_visit_post))
+            <h2>Blog statics</h2>
+            <div style="padding-left: 4%">
 
-
-            @if(!is_null($max_post_visit_post))
-                <h4>post with the most interaction is </h4>
+                <h4>Your most visited post with {{$max_post_visit_post->visits}} visits</h4>
                 <div style="padding-left: 4%">
                     <div class="post" onclick="location.href='/posts/{{$max_post_visit_post->id}}'">
                         <p class="title">{{$max_post_visit_post->title}}</p>
@@ -41,18 +36,20 @@
                     </div>
                 </div>
                 <br>
-            @endif
+            </div>
 
-            <label>number of reaches for this post is 15</label><br>
-        </div>
+        @endif
+
 
     </div>
-    <div class="your-posts">
+
+
+    <div class="your-posts" style="padding-left:4%;">
 
         @if(!is_null($user_posts->first()))
             <h4>your posts</h4>
-            <label>number of posts = {{$no_posts}}</label><br>
-        @foreach($user_posts as $post)
+            <label>number of posts = {{$user_posts->count()}}</label><br><br>
+            @foreach($user_posts as $post)
                 <div style="padding-left: 4%">
                     <div class="post" onclick="location.href='/posts/{{$post->id}}'">
                         <p class="title">{{$post->title}}</p>

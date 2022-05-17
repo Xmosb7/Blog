@@ -4,7 +4,7 @@
     @if(!is_null( $pinned_posts->first() ) )
         <div class="pinned-posts">
             <div>
-                <h3 style="text-decoration: underline;text-underline-position: under;">pinned posts</h3>
+                <h3 style="text-decoration: underline;text-underline-position: under;">Pinned posts</h3>
             </div>
             @foreach($pinned_posts as $post)
                 <div style="padding-left: 4%">
@@ -14,11 +14,12 @@
                     </div>
                 </div>
             @endforeach
+
             @endif
 
             <div class="main-posts">
                 <div>
-                    <h3 style="text-decoration: underline;text-underline-position: under;">main posts</h3>
+                    <h3 style="text-decoration: underline;text-underline-position: under;">Main posts</h3>
                 </div>
                 @if(!is_null($main_posts->first()))
                     @foreach($main_posts as $post)

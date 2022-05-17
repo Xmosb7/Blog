@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('img');
+            $table->text('img');
             $table->binary('is_admin')->default(0)->nullable();
-            $table->foreignId('plan_id')->constrained('plans');
+            $table->foreignId('plan_id')->constrained('plans')->default(1)->nullable()->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->rememberToken();
             $table->timestamps();
