@@ -88,7 +88,7 @@
         <div id="right_side" class="right_side">
             {{--   30% --}}
             <div>
-                <a href="/get-premium-plan" type="text" id="premium-box" class="premium-box">Get Premium plan</a>
+                <a href="/get-premium-plan/request" type="text" id="premium-box" class="premium-box">Get Premium plan</a>
             </div>
             <div>
                 <input type="text" id="search-box" class="search-box" placeholder="search">
@@ -97,8 +97,10 @@
                 <div class="suggested-posts">
                     @foreach($suggested_posts as $post)
                         <div class="suggested-post" onclick="location.href='/posts/{{$post->id}}'">
-                            <p class="title">{{$post->title}}</p>
-                            <p>{{$post->body}}</p>
+                            <div>
+                                <p class="title">{{$post->title}}</p>
+                                <p>{{$post->body}}</p>
+                            </div>
                         </div>
                     @endforeach
                     @endif
