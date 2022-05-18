@@ -17,7 +17,7 @@
 <div id="left_side" class="left_side">
     <div class="logos">
         <p onclick="location.href='{{ url('/') }}'" style="cursor: pointer;font-size: 1.2vw"
-           class="h25">{{ config('app.name', 'Laravel') }}</p>
+           class="h25">{{ config('app.name', 'BLOG') }}</p>
         <div onclick="location.href='{{ url('/') }}'" style="cursor: pointer;" class="h15" role="tooltip" aria-hidden="false"
              aria-describedby="1" aria-labelledby="1">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Home">
@@ -99,7 +99,7 @@
                         <div class="suggested-post" onclick="location.href='/posts/{{$post->id}}'">
                             <div>
                                 <p class="title">{{$post->title}}</p>
-                                <p>{{$post->body}}</p>
+                                <p>{{$post->description}}</p>
                             </div>
                         </div>
                     @endforeach

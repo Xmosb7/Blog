@@ -565,7 +565,7 @@
                 <div style="padding-left: 4%">
                     <div class="post" onclick="location.href='/posts/{{$max_post_visit_post->id}}'">
                         <p class="title">{{$max_post_visit_post->title}}</p>
-                        <p>{{$max_post_visit_post->body}}</p>
+                        <p>{{$max_post_visit_post->description}}</p>
                     </div>
                 </div>
                 <br>
@@ -698,7 +698,7 @@
                 <div style="padding-left: 4%">
                     <div class="post" onclick="location.href='/posts/{{$post->id}}'">
                         <p class="title">{{$post->title}}</p>
-                        <p>{{$post->body}}</p>
+                        <p>{{$post->description}}</p>
                     </div>
                 </div>
             @endforeach

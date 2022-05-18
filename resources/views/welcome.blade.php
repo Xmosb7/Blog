@@ -10,7 +10,7 @@
                 <div style="padding-left: 4%">
                     <div class="post" onclick="location.href='/posts/{{$post->id}}'">
                         <p class="title">{{$post->title}}</p>
-                        <p>{{$post->body}}</p>
+                        <p>{{$post->description}}</p>
                     </div>
                 </div>
             @endforeach
@@ -26,7 +26,7 @@
                         <div style="padding-left: 4%">
                             <div class="post" onclick="location.href='/posts/{{$post->id}}'">
                                 <p class="title">{{$post->title}}</p>
-                                <p>{{$post->body}}</p>
+                                <p>{{$post->description}}</p>
                             </div>
                         </div>
                     @endforeach
