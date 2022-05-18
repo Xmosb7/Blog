@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use \App\Http\Controllers\premium;
 use \App\Http\Controllers\adminController;
 use \App\Http\Controllers\IndexController;
+use \App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,12 @@ Route::get('/', [IndexController::class, 'welcome'])->name('welcome');
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/posts/{post_id}', [PostController::class, 'show']);
 
 //must be logged in
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/get-premium-plan/request', [premium::class, 'request'])->name('premium.request');
+Route::get('/get-premium-plan/request', [premium::class, 'request'])->name('premium.request');
+
 });
 
 
