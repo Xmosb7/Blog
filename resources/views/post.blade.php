@@ -5,7 +5,12 @@
 
 
     <div class="row">
-        <h1>{{ $post->title }}</h1>
+        <div style="text-align: left">
+            <h1>{{ $post->title }}</h1>
+        </div>
+        <div style="display: inline-block;width: 100%">
+            <label style="float:right;width:98%;color: gray;font-size: 0.9vw;"> Writer: {{ \Illuminate\Support\Facades\DB::table('users')->where('id',$post->user_id)->first()->name }}, post has {{ $post->visits }} visits.</label>
+        </div>
         <div style="padding-left: 4%">
             <p class="lead">{!! $post->body !!}</p>
             <hr>
@@ -18,7 +23,7 @@
                     @foreach ($comments as $comment)
                         <div style="padding: 1% 0 0 2%; margin-left: 2%;text-align: left">
                             <strong>{{\Illuminate\Support\Facades\DB::table('users')->where('id',$comment->user_id)->first()->name}}</strong>
-                            <p  style="padding-left: 4%">{{ $comment->body }}</p>
+                            <p style="padding-left: 4%">{{ $comment->body }}</p>
                             <hr style="width: 100%;opacity: 45%;">
                         </div>
                     @endforeach

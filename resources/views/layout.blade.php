@@ -45,7 +45,7 @@
         @guest
             @if (Route::has('login'))
                 <a href="{{ route('login') }}"
-                   style="display: block;font-size: 1vw;margin-bottom: 2%;color: black">{{ __('Login') }}</a>
+                   style="display: block;font-size: 1vw;margin-bottom: 2%;color: black">{{ __('Login') }}</a><br>
             @endif
 
             @if (Route::has('register'))

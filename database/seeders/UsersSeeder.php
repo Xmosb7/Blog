@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
             'name'=> 'admin@admin',
             'email'=> 'admin@admin',
             'password'=>  bcrypt('admin@admin'),
-            'img'=>'https://www.albayan.ae/polopoly_fs/1.3618336.1564667422!/image/image.jpg',
+            'img'=>'https://www.seekpng.com/png/full/356-3562377_personal-user.png',
             'is_admin' =>'1',
             'plan_id'=>'2',
         ]);
@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
             'name'=> 'user@user',
             'email'=> 'user@user',
             'password'=>  bcrypt('user@user'),
-            'img'=>'https://pbs.twimg.com/media/DhAcqQcW0AAL8CG.jpg',
+            'img'=>'https://p.kindpng.com/picc/s/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png',
             'is_admin' =>0,
             'plan_id'=>1,
         ]);
