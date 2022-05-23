@@ -24,6 +24,11 @@
 
             </div>
 
+            <div>
+
+                <a href="{{ route('post.editForm', $post->id) }}"><i class="fa fa-trash"></i>Edit</a>
+            </div>
+
             <p class="lead">{!! $post->body !!}</p>
             <hr>
             <div id="backend-comments" style="margin-top: 3%;text-align: left">

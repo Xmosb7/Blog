@@ -29,6 +29,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/posts/{post_id}', [PostController::class, 'show']);
     Route::get('/posts/delete/{post_id}', [PostController::class, 'DeletePost'])->name('post.delete');
+    Route::get('/posts/edit/{post_id}', [PostController::class, 'EditPostForm'])->name('post.editForm');
+    Route::get('/postsedit', [PostController::class, 'EditPost'])->name('post.edit');
     Route::get('/get-premium-plan/request', [premium::class, 'request'])->name('premium.request');
 });
 
