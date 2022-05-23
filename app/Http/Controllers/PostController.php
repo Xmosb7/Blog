@@ -35,4 +35,35 @@ class PostController extends Controller
         }
         return redirect()->route('home');
     }
+
+    public function EditPostform($post_id, Request $request)
+    {
+        $post = DB::table('posts')->where('id', $post_id)->get();
+        return view('editpost', ['post' => $post[0], 'request' => $request]);
+    }
+    public function EditPost(Request $request)
+    {
+        $id = $request->input('Id');
+        //if it's admin
+        if (auth()->check() && auth()->user()->is_admin == 1) {
+
+            $title = $request->input('Title');
+            $description = $request->input('Description');
+            $body = $request->input('Body');
+            DB::update('update posts set title = ?, description = ?, body = ?, updated1_at = ? where id = ?', [$title, $description, $body, date('Y-m-d H:i:s'), $id]);
+        }
+        //if it's user
+        else {
+            $Owner = DB::table('posts')->select('user_id')->from('posts')->where('id', $id)->first();
+            if (auth()->check() && auth()->user()->id == $Owner->user_id) {
+                $title = $request->input('Title');
+                $description = $request->input('Description');
+                $body = $request->input('Body');
+                DB::update('update posts set title = ?, description = ?, body = ?, updated_at = ? where id = ?', [$title, $description, $body, date('Y-m-d H:i:s'), $id]);
+            } else {
+                return redirect()->back()->withErrors(["You cant edit that post."]);
+            }
+        }
+        return redirect()->route('home');
+    }
 }
