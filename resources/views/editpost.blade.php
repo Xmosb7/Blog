@@ -5,6 +5,7 @@
         @if ($errors->any())
             <h2>{{ $errors->first() }}</h2>
         @endif
+        <br><br>
         <form action="{{ route('post.edit', $post->id) }}" method="get">
 
             <input class="form" type="hidden" id="id" name="Id" value="{{ $request->id }}">
