@@ -50,7 +50,7 @@ class PostController extends Controller
             $title = $request->input('Title');
             $description = $request->input('Description');
             $body = $request->input('Body');
-            DB::update('update posts set title = ?, description = ?, body = ?, updated1_at = ? where id = ?', [$title, $description, $body, date('Y-m-d H:i:s'), $id]);
+            DB::update('update posts set title = ?, description = ?, body = ?, updated_at = ? where id = ?', [$title, $description, $body, date('Y-m-d H:i:s'), $id]);
         }
         //if it's user
         else {

@@ -8,7 +8,7 @@
         <br><br>
         <form action="{{ route('post.edit', $post->id) }}" method="get">
 
-            <input class="form" type="hidden" id="id" name="Id" value="{{ $request->id }}">
+            <input class="form" type="hidden" id="id" name="Id" value="{{ $request->id }} {{ $post->id }}">
             <div class='title'>
                 <label for="Title">Title</label>
 
