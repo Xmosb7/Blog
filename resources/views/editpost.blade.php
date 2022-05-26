@@ -23,7 +23,7 @@
             </div>
             <div class='body'>
                 <label for="Body">Body</label>
-                <textarea id="form" name="Body">{{ $request->body }}"{{ $post->body }}"</textarea>
+                <textarea id="form" name="Body">{{ $request->body }}{{ $post->body }}</textarea>
                 <input class="form" type="submit" value="Submit">
             </div>
         </form>
