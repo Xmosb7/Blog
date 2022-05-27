@@ -20,6 +20,7 @@ class PostController extends Controller
                     'visits' => DB::raw('visits + 1'),
                 ]);
         }
+      
         return view('post', ['post' => $post[0], 'comments' => $comments]);
     }
 
@@ -59,6 +60,17 @@ class PostController extends Controller
         return redirect()->route('home');
     }
 
+    public function AddComment(Request $request)
+    {
+        if (auth()->check()) {
+
+            $body = $request->input('comment');
+            $post_id = $request->input('post_id');
+            $user = auth()->user()->id;
+            DB::insert('insert into comments (body, user_id, post_id, created_at) values (?, ?, ?, ?)', [$body, $user, $post_id, date('Y-m-d H:i:s')]);
+        }
+        return redirect()->back();
+    }
 
 
     public function DeletePost($post_id)
@@ -80,6 +92,49 @@ class PostController extends Controller
         }
         return redirect()->route('home');
     }
+
+    public function DeleteComment($post_id)
+    {
+          //if it's admin
+          if (auth()->check() && auth()->user()->is_admin == 1) {
+            DB::table('comments')->delete($post_id);
+        }
+        //if it's user
+        else {
+            $Owner = DB::table('comments')->select('user_id')->from('comments')->where('id', $post_id)->first();
+            if (auth()->check() && auth()->user()->id == $Owner->user_id) {
+                DB::table('comments')
+                    ->delete($post_id);
+            } else {
+                return redirect()->back()->withErrors(["You cant delete that commment."]);
+            }
+        }
+        return redirect()->back();      
+    }
+
+
+    public function EditCommentform($post_id, Request $request)
+    {
+        $comment = DB::table('comments')->where('id', $post_id)->get();
+        $Owner = DB::table('comments')->select('user_id')->from('comments')->where('id', $post_id)->first();
+
+        if ((auth()->check() && auth()->user()->is_admin == 1) || (auth()->check() && auth()->user()->id == $Owner->user_id)) {
+            return view('editcomment', ['comment' => $comment[0], 'request' => $request]);
+        } else {
+            return redirect()->back()->withErrors(["You cant edit that comment."]);
+        }
+    }   
+
+    public function EditComment(Request $request)
+    {
+        $id = $request->input('Id');
+        $body = $request->input('Body');
+        DB::update('update comments set body = ?, updated_at = ? where id = ?', [$body, date('Y-m-d H:i:s'), $id]);
+        $post_id = DB::table('comments')->select('post_id')->from('comments')->where('id', $id)->first()->post_id;
+
+        return redirect()->route('post.show', ['post_id'=> $post_id]);
+
+    }   
 
     public function EditPostform($post_id, Request $request)
     {
