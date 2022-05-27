@@ -13,6 +13,7 @@ class PostController extends Controller
     {
         $post = DB::table('posts')->where('id', $post_id)->get();
         $comments = DB::table('comments')->where('post_id', $post_id)->get();
+
         return view('post', ['post' => $post[0], 'comments' => $comments]);
     }
 
@@ -52,6 +53,17 @@ class PostController extends Controller
         return redirect()->route('home');
     }
 
+    public function AddComment(Request $request)
+    {
+        if (auth()->check()) {
+
+            $body = $request->input('comment');
+            $post_id = $request->input('post_id');
+            $user = auth()->user()->id;
+            DB::insert('insert into comments (body, user_id, post_id, created_at) values (?, ?, ?, ?)', [$body, $user, $post_id, date('Y-m-d H:i:s')]);
+        }
+        return redirect()->back();
+    }
 
 
     public function DeletePost($post_id)

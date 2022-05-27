@@ -50,7 +50,18 @@
                         <h2>There is no comments yet.</h2>
                     </div>
                 @endif
+				<form action="{{ route('post.addcomment') }}" method="get">
 
+					<input class="form" type="hidden" id="id" name="Id" value="">
+					<div class='body'>
+						<label for="body">Add Comment</label>
+						<input type="hidden" id="post_id" name="post_id" value= {{ $post->id }}>
+						<input class="form" type="text" id="comment" name="comment">
+						<input class="form" type="submit" value="Submit" style = "width:10%">
+					</div>
+					<br><br>
+
+				</form>
             </div>
         </div>
 
@@ -60,7 +71,6 @@
 
             <div class="col-md-4">
                 <div class="well">
-
 
                 </div>
             </div>

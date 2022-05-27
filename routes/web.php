@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/posts/{post_id}', [PostController::class, 'show'])->name('post.show');
     Route::get('/write', [PostController::class, 'WritePost'])->name('post.write');
     Route::get('/write/done', [PostController::class, 'AddPost'])->name('post.add');
+    Route::get('/post/addcomment', [PostController::class, 'AddComment'])->name('post.addcomment');
     Route::get('/posts/delete/{post_id}', [PostController::class, 'DeletePost'])->name('post.delete');
     Route::get('/posts/deletecomment/{post_id}', [PostController::class, 'DeleteComment'])->name('post.deleteComment');
 
