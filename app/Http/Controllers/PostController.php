@@ -74,6 +74,25 @@ class PostController extends Controller
         return redirect()->route('home');
     }
 
+    public function DeleteComment($post_id)
+    {
+          //if it's admin
+          if (auth()->check() && auth()->user()->is_admin == 1) {
+            DB::table('comments')->delete($post_id);
+        }
+        //if it's user
+        else {
+            $Owner = DB::table('comments')->select('user_id')->from('comments')->where('id', $post_id)->first();
+            if (auth()->check() && auth()->user()->id == $Owner->user_id) {
+                DB::table('comments')
+                    ->delete($post_id);
+            } else {
+                return redirect()->back()->withErrors(["You cant delete that commment."]);
+            }
+        }
+        return redirect()->back();      
+    }
+
     public function EditPostform($post_id, Request $request)
     {
         $post = DB::table('posts')->where('id', $post_id)->get();

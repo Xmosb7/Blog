@@ -31,7 +31,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/write', [PostController::class, 'WritePost'])->name('post.write');
     Route::get('/write/done', [PostController::class, 'AddPost'])->name('post.add');
     Route::get('/posts/delete/{post_id}', [PostController::class, 'DeletePost'])->name('post.delete');
+
+    Route::get('/posts/deletecomment/{post_id}', [PostController::class, 'DeleteComment'])->name('post.deleteComment');
+
     Route::get('/posts/edit/{post_id}', [PostController::class, 'EditPostForm'])->name('post.editForm');
+    
     Route::get('/postsedit', [PostController::class, 'EditPost'])->name('post.edit');
     Route::get('/get-premium-plan/request', [premium::class, 'request'])->name('premium.request');
 });

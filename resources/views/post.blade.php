@@ -39,7 +39,10 @@
                         <div style="padding: 1% 0 0 2%; margin-left: 2%;text-align: left">
                             <strong>{{ \Illuminate\Support\Facades\DB::table('users')->where('id', $comment->user_id)->first()->name }}</strong>
                             <p style="padding-left: 4%">{{ $comment->body }}</p>
+							<a href="{{ route('post.editForm', $post->id) }}"><i class="fa fa-trash"></i>Edit</a>
+							<a href="{{ route('post.deleteComment', $post->id) }}"><i class="fa fa-trash"></i>Delete</a>
                             <hr style="width: 100%;opacity: 45%;">
+							
                         </div>
                     @endforeach
                 @else
