@@ -13,7 +13,14 @@ class PostController extends Controller
     {
         $post = DB::table('posts')->where('id', $post_id)->get();
         $comments = DB::table('comments')->where('post_id', $post_id)->get();
-
+        if (auth()->check() && auth()->user()->is_admin == 0) {
+            DB::table('posts')
+                ->where('id', $post_id)
+                ->update([
+                    'visits' => DB::raw('visits + 1'),
+                ]);
+        }
+      
         return view('post', ['post' => $post[0], 'comments' => $comments]);
     }
 
