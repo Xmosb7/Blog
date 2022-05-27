@@ -42,9 +42,6 @@
                     </svg>
                 </a>
             </div>
-            <div onclick="location.href='{{ url('/email') }}'" style="cursor: pointer;color: #757575" class="h15">
-                <img alt="Profile" class="l ci gk si sj go" src="/contact.jpg" width="32" height="32">
-            </div>
             <!-- Authentication Links -->
             @guest
                 @if (Route::has('login'))
