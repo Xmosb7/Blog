@@ -39,7 +39,10 @@
                         <div style="padding: 1% 0 0 2%; margin-left: 2%;text-align: left">
                             <strong>{{ \Illuminate\Support\Facades\DB::table('users')->where('id', $comment->user_id)->first()->name }}</strong>
                             <p style="padding-left: 4%">{{ $comment->body }}</p>
+							<a href="{{ route('post.editCommentForm', $comment->id) }}"><i class="fa fa-trash"></i>Edit</a>
+							<a href="{{ route('post.deleteComment', $comment->id) }}"><i class="fa fa-trash"></i>Delete</a>
                             <hr style="width: 100%;opacity: 45%;">
+							
                         </div>
                     @endforeach
                 @else
@@ -47,7 +50,18 @@
                         <h2>There is no comments yet.</h2>
                     </div>
                 @endif
+				<form action="{{ route('post.addcomment') }}" method="get">
 
+					<input class="form" type="hidden" id="id" name="Id" value="">
+					<div class='body'>
+						<label for="body">Add Comment</label>
+						<input type="hidden" id="post_id" name="post_id" value= {{ $post->id }}>
+						<input class="form" type="text" id="comment" name="comment">
+						<input class="form" type="submit" value="Submit" style = "width:10%">
+					</div>
+					<br><br>
+
+				</form>
             </div>
         </div>
 
@@ -57,7 +71,6 @@
 
             <div class="col-md-4">
                 <div class="well">
-
 
                 </div>
             </div>
