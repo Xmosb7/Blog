@@ -27,16 +27,19 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //must be logged in
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/posts/{post_id}', [PostController::class, 'show']);
+    Route::get('/posts/{post_id}', [PostController::class, 'show'])->name('post.show');
     Route::get('/write', [PostController::class, 'WritePost'])->name('post.write');
     Route::get('/write/done', [PostController::class, 'AddPost'])->name('post.add');
     Route::get('/posts/delete/{post_id}', [PostController::class, 'DeletePost'])->name('post.delete');
-
     Route::get('/posts/deletecomment/{post_id}', [PostController::class, 'DeleteComment'])->name('post.deleteComment');
 
     Route::get('/posts/edit/{post_id}', [PostController::class, 'EditPostForm'])->name('post.editForm');
+    Route::get('/posts/editcommentform/{post_id}', [PostController::class, 'EditCommentForm'])->name('post.editCommentForm');
+
     
     Route::get('/postsedit', [PostController::class, 'EditPost'])->name('post.edit');
+    Route::get('/postseditcomment', [PostController::class, 'EditComment'])->name('post.editComment');
+
     Route::get('/get-premium-plan/request', [premium::class, 'request'])->name('premium.request');
 });
 
