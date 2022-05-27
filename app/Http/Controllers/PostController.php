@@ -16,6 +16,44 @@ class PostController extends Controller
         return view('post', ['post' => $post[0], 'comments' => $comments]);
     }
 
+    public function WritePost(Request $request)
+    {
+        if (auth()->check() && auth()->user()->plan_id == 1) {
+            return redirect()->back()->withErrors(["You cant Write a post."]);
+        } else {
+            return view('write', ['request' => $request]);
+        }
+    }
+    public function AddPost(Request $request)
+    {
+        //if it's admin
+        if (auth()->check() && auth()->user()->is_admin == 1) {
+
+            $title = $request->input('Title');
+            $description = $request->input('Description');
+            $body = $request->input('Body');
+            $user = auth()->user()->id;
+            DB::insert('insert into posts (title, description, body, visits,pinned,user_id, created_at) values (?, ?, ?, ?, ?,?,?)', [$title, $description, $body, 0, 0, $user, date('Y-m-d H:i:s')]);
+        }
+        // if it user 
+        else {
+            $postcounter = DB::table('posts')->where('user_id', auth()->user()->id)->count();
+            // if it have 2 posts so it cant
+            if ($postcounter < 2) {
+                $title = $request->input('Title');
+                $description = $request->input('Description');
+                $body = $request->input('Body');
+                $user = auth()->user()->id;
+                DB::insert('insert into posts (title, description, body, visits,pinned,user_id, created_at) values (?, ?, ?, ?, ?,?,?)', [$title, $description, $body, 0, 0, $user, date('Y-m-d H:i:s')]);
+            } else {
+                return redirect()->back()->withErrors(["You Have You limit Posts."]);
+            }
+        }
+        return redirect()->route('home');
+    }
+
+
+
     public function DeletePost($post_id)
     {
         //if it's admin
@@ -50,7 +88,7 @@ class PostController extends Controller
             $title = $request->input('Title');
             $description = $request->input('Description');
             $body = $request->input('Body');
-            DB::update('update posts set title = ?, description = ?, body = ?, updated1_at = ? where id = ?', [$title, $description, $body, date('Y-m-d H:i:s'), $id]);
+            DB::update('update posts set title = ?, description = ?, body = ?, updated_at = ? where id = ?', [$title, $description, $body, date('Y-m-d H:i:s'), $id]);
         }
         //if it's user
         else {
