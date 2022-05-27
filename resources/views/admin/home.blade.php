@@ -50,7 +50,7 @@
                 <div class="left-side-avatar">
                     <div style="padding-left:45%;text-align: left">
                         <label>You're logged in as <strong>User</strong>.</label><br>
-                        <label>You're plan is <strong>{{ $plan->name }}</strong>.</label><br>
+                        <label>You're plan is <strong>Unlimited</strong>.</label><br>
                         <label>there is <strong>{{$no_visits}}</strong> visits.</label><br>
                         <label>there is <strong>{{$no_users}}</strong> users who signed up.</label>
                     </div>
