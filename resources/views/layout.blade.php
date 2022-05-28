@@ -19,17 +19,17 @@
     <div id="left_side" class="left_side">
         <div class="logos">
             <p onclick="location.href='{{ url('/') }}'" style="cursor: pointer;font-size: 1.2vw;color: #757575"
-                class="h25">{{ config('app.name', 'BLOG') }}</p>
-            <div onclick="location.href='{{ url('/') }}'" style="cursor: pointer;color: #757575" class="h15"
-                role="tooltip" aria-hidden="false" aria-describedby="1" aria-labelledby="1">
+                class="h25">Blog</p>
+            <div onclick="location.href='{{ url('/') }}'" style="cursor: pointer;color: #757575"
+                class="h15" role="tooltip" aria-hidden="false" aria-describedby="1" aria-labelledby="1">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Home">
                     <path
                         d="M4.5 10.75v10.5c0 .14.11.25.25.25h5c.14 0 .25-.11.25-.25v-5.5c0-.14.11-.25.25-.25h3.5c.14 0 .25.11.25.25v5.5c0 .14.11.25.25.25h5c.14 0 .25-.11.25-.25v-10.5M22 9l-9.1-6.83a1.5 1.5 0 0 0-1.8 0L2 9"
                         stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
             </div>
-            <div style="cursor: pointer;" class="h15" role="tooltip" aria-hidden="false"
-                 aria-describedby="5" aria-labelledby="5">
+            <div style="cursor: pointer;" class="h15" role="tooltip" aria-hidden="false" aria-describedby="5"
+                aria-labelledby="5">
                 <a href="{{ url('/write') }}" style="color: #757575">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Write">
                         <path
@@ -61,9 +61,9 @@
                     <img alt="Profile" src="/profile.jpg" width="35" height="35">
                 </a>
                 <div>
-                    <a style="display: block;font-size: 0.8vw;margin-bottom: 2%;color: black"
-                        href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
+                    <a style="display: block;font-size: 0.8vw;margin-bottom: 2%;color: black" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
 
