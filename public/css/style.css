@@ -96,7 +96,6 @@ body {
 }
 
 
-
 .title {
     font-weight: bold;
 }
@@ -133,9 +132,10 @@ body {
     width: 45%;
     text-align: left;
 }
+
 .avatar-img {
     object-fit: cover;
-    border-radius:50%;
+    border-radius: 50%;
     width: 200px;
     height: 200px;
 }
@@ -145,7 +145,6 @@ body {
     font-size: 1.3vw;
     font-weight: 300;
 }
-
 
 
 /* Update Post*/
@@ -172,13 +171,13 @@ body {
     resize: none;
 }
 
-.title input{
+.title input {
     width: 50%;
-        height: 20px;
-        padding: 12px 20px;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        background-color: #f8f8f8;
-        resize: none;
+    height: 20px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
 }
