@@ -140,11 +140,12 @@
                             <div style="padding:1%;text-align: center;width:100%">
                                 <table style="width:98%">
                                     <tr>
-                                        <th>id</th>
-                                        <th>user id</th>
-                                        <th>status</th>
-                                        <th>created at</th>
-                                        <th>updated at</th>
+                                        <th>Id</th>
+                                        <th>User id</th>
+                                        <th>Username</th>
+                                        <th>Status</th>
+                                        <th>Created at</th>
+                                        <th>Updated at</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
@@ -157,6 +158,9 @@
                                             </td>
                                             <td>
                                                 {{$order->user_id}}
+                                            </td>
+                                            <td>
+                                                {{\Illuminate\Support\Facades\DB::table('users')->where('id',$order->user_id)->first()->name}}
                                             </td>
                                             <td>
                                                 {{$order->status}}

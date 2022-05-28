@@ -54,7 +54,7 @@
                         style="display: block;font-size: 0.8vw;margin-bottom: 2%;color: black">{{ __('Register') }}</a>
                 @endif
             @else
-                <a href="{{ url('/home') }}" style="display: block;margin-bottom: 25%;">
+                <a href="{{ route('home') }}" style="display: block;margin-bottom: 25%;">
                     <img alt="Profile" src="/profile.jpg" width="35" height="35">
                 </a>
                 <div>
